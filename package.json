@@ -2,9 +2,10 @@
   "name": "expressjs-template",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "start": "NODE_PATH=. node src/server.js",
+    "dev": "NODE_PATH=. nodemon src/server.js"
   },
   "license": "ISC",
   "dependencies": {
