@@ -6,6 +6,7 @@ const {
   getAuthorsController,
   createAuthorController,
 } = require("src/controllers/authors");
+const { createAuthorSchema } = require("src/domain/schemas/authors");
 
 router.get("", getAuthorsController);
 router.get("/:my_param", getAuthorController);
