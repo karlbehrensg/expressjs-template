@@ -10,6 +10,13 @@ module.exports = {
         createdAt: Sequelize.fn("NOW"),
         updatedAt: Sequelize.fn("NOW"),
       },
+      {
+        firstName: "John",
+        lastName: "Doe",
+        email: "johndoe@test.com",
+        createdAt: Sequelize.fn("NOW"),
+        updatedAt: Sequelize.fn("NOW"),
+      },
     ]);
   },
   down: (queryInterface, Sequelize) => {
