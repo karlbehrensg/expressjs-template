@@ -1,8 +1,11 @@
 require("dotenv").config();
 
-const dbCondig = () => {
+const dbConfig = () => {
   if (process.env.NODE_ENV === "test") {
-    return "sqlite::memory:";
+    return {
+      dialect: "sqlite",
+      storage: "./test_db.sqlite",
+    };
   }
 
   return {
@@ -15,4 +18,6 @@ const dbCondig = () => {
   };
 };
 
-module.exports = dbCondig();
+console.log(dbConfig());
+
+module.exports = dbConfig();
