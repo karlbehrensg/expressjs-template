@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("", (req, res) => {
+const { Author } = require("src/domain/models");
+
+router.get("", async (req, res) => {
   // Check if a query value come into url: baseurl/authors?custom_query=my_custom_query_value
   if (req.query.custom_query) {
     res.send(`Get authors with custom_query: ${req.query.custom_query}`);
   } else {
-    res.send("Get all authors");
+    const authors = await Author.findAll();
+    res.send(authors);
   }
 });
 
