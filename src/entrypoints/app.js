@@ -1,11 +1,11 @@
 const express = require("express");
 
-const router = require("src/entrypoints/routes");
+const routes = require("src/entrypoints/routes");
 
 const createApp = () => {
   const app = express();
 
-  app.use(router);
+  app.use(routes);
 
   return app;
 };

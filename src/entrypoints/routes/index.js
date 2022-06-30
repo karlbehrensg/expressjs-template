@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("", (req, res) => {
-  res.send("welcome to backend server");
-});
+const authorsRoutes = require("./authorsRoutes");
+const booksRoutes = require("./booksRoutes");
+
+router.use("/authors", authorsRoutes);
+router.use("/books", booksRoutes);
 
 module.exports = router;
