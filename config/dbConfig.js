@@ -1,0 +1,18 @@
+require("dotenv").config();
+
+const dbCondig = () => {
+  if (process.env.NODE_ENV === "test") {
+    return "sqlite::memory:";
+  }
+
+  return {
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+    schema: process.env.DB_SCHEMA,
+  };
+};
+
+module.exports = dbCondig();
