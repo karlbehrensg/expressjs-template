@@ -6,11 +6,12 @@ const {
   getAuthorsController,
   createAuthorController,
 } = require("src/controllers/authors");
+const { validateSchema } = require("src/middleware");
 const { createAuthorSchema } = require("src/domain/schemas/authors");
 
 router.get("", getAuthorsController);
 router.get("/:my_param", getAuthorController);
-router.post("", createAuthorController);
+router.post("", validateSchema(createAuthorSchema), createAuthorController);
 
 router.put("/:id", (req, res) => {
   res.send(`Author with id ${req.params.id} updated`);
