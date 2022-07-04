@@ -1,9 +1,14 @@
-const app = require("src/entrypoints/app");
-
+const express = require("express");
 const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => {
-  console.log("server listening at 3000");
-});
+// const { apiErrorHandler } = require("src/errors");
+const router = require("src/routes");
 
-server.on("error", console.error);
+const app = express();
+
+// app.use(apiErrorHandler);
+app.use(router);
+
+app.listen(PORT, () => {
+  console.log(`Server listening in port ${PORT}`);
+});

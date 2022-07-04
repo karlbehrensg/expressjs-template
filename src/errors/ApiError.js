@@ -7,6 +7,8 @@ class ApiError {
   static badRequest(msg) {
     return new ApiError(400, msg);
   }
-}
 
-module.exports = ApiError;
+  static notFound(msg) {
+    return new ApiError(404, msg);
+  }
+}

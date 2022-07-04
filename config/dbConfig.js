@@ -4,7 +4,7 @@ const dbConfig = () => {
   if (process.env.NODE_ENV === "test") {
     return {
       dialect: "sqlite",
-      storage: "./test_db.sqlite",
+      store: ":memory:", // Tambien puede ser en memoria con el valor ":memory:"
     };
   }
 
