@@ -1,4 +1,4 @@
 const ApiError = require("src/errors/ApiError");
-const apiErrorHanlder = require("src/errors/apiErrorHandler");
+const apiErrorHandler = require("src/errors/apiErrorHandler");
 
-module.exports = { apiErrorHanlder, ApiError };
+module.exports = { apiErrorHandler, ApiError };

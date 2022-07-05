@@ -12,3 +12,5 @@ class ApiError {
     return new ApiError(404, msg);
   }
 }
+
+module.exports = ApiError;

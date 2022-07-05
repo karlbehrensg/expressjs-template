@@ -5,7 +5,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_PATH=. nodemon src/server.js",
-    "pretest": "NODE_ENV=test npx sequelize-cli db:migrate && NODE_ENV=test npx sequelize-cli db:seed:all",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seeds": "npx sequelize-cli db:seed:all",
+    "migrate:seeds:all": "yarn migrate && yarn seeds",
+    "pretest": "NODE_ENV=test yarn migrate:seeds:all",
     "test": "NODE_PATH=. NODE_ENV=test jest"
   },
   "dependencies": {

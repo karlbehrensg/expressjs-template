@@ -1,6 +1,6 @@
 const ApiError = require("src/errors/ApiError");
 
-const apiErrorHanlder = (err, req, res, next) => {
+const apiErrorHandler = (err, req, res, next) => {
   if (process.env.NODE_ENV !== "production") {
     console.log(err);
   }
@@ -12,4 +12,4 @@ const apiErrorHanlder = (err, req, res, next) => {
   return res.status(500).json("Algo malo paso con el servidor");
 };
 
-module.exports = apiErrorHanlder;
+module.exports = apiErrorHandler;
