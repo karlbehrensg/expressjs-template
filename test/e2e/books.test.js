@@ -23,6 +23,27 @@ describe("Test Books URLs", () => {
     expect(response_id).toEqual(1);
   });
 
+  it("Retrive books from a database with data", async () => {
+    const body = { title: "new book 2" };
+    const expected_body = [
+      { id: 1, title: "new book" },
+      { id: 2, title: "new book 2" },
+    ];
+
+    await request(app).post("/api/books").send(body);
+
+    const response = await request(app).get("/api/books");
+    const response_body = JSON.parse(response["text"]);
+
+    response_body.map((response_book) => {
+      const expected_book = expected_body.find(
+        (expected_book) => expected_book["id"] === response_book["id"]
+      );
+      expect(response_book["id"]).toEqual(expected_book["id"]);
+      expect(response_book["title"]).toEqual(expected_book["title"]);
+    });
+  });
+
   afterAll(async () => {
     await conn.close();
   });
