@@ -58,6 +58,14 @@ describe("Test Books URLs", () => {
     expect(response_body["title"]).toEqual(expected_body["title"]);
   });
 
+  it("Delete book", async () => {
+    const id = 1;
+    await request(app)
+      .delete(`/api/books/${id}`)
+      .expect(200)
+      .expect(`Libro con id ${id} fue eliminado`);
+  });
+
   afterAll(async () => {
     await conn.close();
   });

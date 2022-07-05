@@ -1,7 +1,7 @@
 const { ApiError } = require("src/errors");
 const { Book } = require("src/models");
 
-const deleteBook = async (req, res) => {
+const deleteBook = async (req, res, next) => {
   const id = parseInt(req.params.id);
 
   if (isNaN(id)) {
@@ -16,7 +16,7 @@ const deleteBook = async (req, res) => {
     return;
   }
 
-  book.destroy();
+  await book.destroy();
 
   res.send(`Libro con id ${id} fue eliminado`);
 };
