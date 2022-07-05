@@ -31,7 +31,7 @@ const {
 router.get("", retriveBooks);
 router.get("/:id", retriveBook);
 router.post("", validateSchema(createBookSchema), createBook);
-router.put("/:id", updateBook);
+router.put("/:id", validateSchema(createBookSchema), updateBook);
 router.delete("/:id", deleteBook);
 
 module.exports = router;
