@@ -44,6 +44,20 @@ describe("Test Books URLs", () => {
     });
   });
 
+  it("Update book", async () => {
+    const title = "new book updated";
+    const body = { title };
+    const expected_body = { id: 1, title };
+
+    const response = await request(app)
+      .put(`/api/books/${expected_body["id"]}`)
+      .send(body);
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_body["id"]).toEqual(expected_body["id"]);
+    expect(response_body["title"]).toEqual(expected_body["title"]);
+  });
+
   afterAll(async () => {
     await conn.close();
   });
