@@ -8,7 +8,7 @@
     "migrate": "npx sequelize-cli db:migrate",
     "seeds": "npx sequelize-cli db:seed:all",
     "migrate:seeds:all": "yarn migrate && yarn seeds",
-    "test": "NODE_PATH=. jest --runInBand --detectOpenHandles --forceExit"
+    "test": "NODE_PATH=. jest --runInBand --forceExit"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
