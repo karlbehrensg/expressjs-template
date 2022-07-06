@@ -126,6 +126,27 @@ describe("Test Books URLs", () => {
     );
   });
 
+  it("Try to update new book with an invalid schema", async () => {
+    const body = { invalid_key: "new book" };
+    const expected_body = {
+      errors: ["title is a required field"],
+      inner: [],
+      message: "title is a required field",
+      name: "ValidationError",
+      params: { path: "title" },
+      path: "title",
+      type: "required",
+      value: { invalid_key: "new book" },
+    };
+
+    const response = await request(app).put("/api/books/1").send(body);
+    const response_status = response["status"];
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_status).toEqual(400);
+    expect(response_body).toEqual(expected_body);
+  });
+
   it("Delete book", async () => {
     const id = 1;
     await request(app)
