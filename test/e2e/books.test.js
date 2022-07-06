@@ -113,6 +113,16 @@ describe("Test Books URLs", () => {
       .expect(`Libro con id ${id} fue eliminado`);
   });
 
+  it("Try to delete a workbook that does not exist", async () => {
+    const id = 999;
+    const response = await request(app).delete(`/api/books/${id}`);
+    const response_status = response["status"];
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_status).toEqual(404);
+    expect(response_body).toEqual(`No se encontro el libro con el id: ${id}`);
+  });
+
   afterAll(async () => {
     await conn.close();
   });
