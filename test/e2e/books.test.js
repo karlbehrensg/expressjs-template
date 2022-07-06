@@ -44,6 +44,27 @@ describe("Test Books URLs", () => {
     });
   });
 
+  it("Find book", async () => {
+    const expected_body = { id: 2, title: "new book 2" };
+    const response = await request(app).get(
+      `/api/books/${expected_body["id"]}`
+    );
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_body["id"]).toEqual(expected_body["id"]);
+    expect(response_body["title"]).toEqual(expected_body["title"]);
+  });
+
+  it("Book not found", async () => {
+    const id = 999;
+    const response = await request(app).get(`/api/books/${id}`);
+    const response_status = response["status"];
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_status).toEqual(404);
+    expect(response_body).toEqual(`No se encontro el libro con el id: ${id}`);
+  });
+
   it("Update book", async () => {
     const title = "new book updated";
     const body = { title };
