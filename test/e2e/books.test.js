@@ -25,6 +25,27 @@ describe("Test Books URLs", () => {
     expect(response_title).toEqual(body["title"]);
   });
 
+  it("Try to create new book with an invalid schema", async () => {
+    const body = { invalid_key: "new book" };
+    const expected_body = {
+      errors: ["title is a required field"],
+      inner: [],
+      message: "title is a required field",
+      name: "ValidationError",
+      params: { path: "title" },
+      path: "title",
+      type: "required",
+      value: { invalid_key: "new book" },
+    };
+
+    const response = await request(app).post("/api/books").send(body);
+    const response_status = response["status"];
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_status).toEqual(400);
+    expect(response_body).toEqual(expected_body);
+  });
+
   it("Retrive books from a database with data", async () => {
     const body = { title: "new book 2" };
     const expected_body = [
