@@ -4,6 +4,7 @@
   "main": "src/server.js",
   "license": "MIT",
   "scripts": {
+    "start": "NODE_PATH=. NODE_ENV=production node src/server.js",
     "dev": "NODE_PATH=. nodemon src/server.js",
     "migrate": "npx sequelize-cli db:migrate",
     "seeds": "npx sequelize-cli db:seed:all",
