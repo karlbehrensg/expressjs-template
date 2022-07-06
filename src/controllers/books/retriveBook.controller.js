@@ -16,7 +16,7 @@ const retriveBook = async (req, res, next) => {
     return;
   }
 
-  res.send(book);
+  res.status(200).send(book);
 };
 
 module.exports = retriveBook;

@@ -18,7 +18,7 @@ const deleteBook = async (req, res, next) => {
 
   await book.destroy();
 
-  res.send(`Libro con id ${id} fue eliminado`);
+  res.status(200).send(`Libro con id ${id} fue eliminado`);
 };
 
 module.exports = deleteBook;

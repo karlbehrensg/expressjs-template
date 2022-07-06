@@ -12,7 +12,7 @@ const retriveBooks = async (req, res) => {
   const books = await Book.findAll();
 
   // Obtencion de libros
-  return res.send(books);
+  return res.status(200).send(books);
 };
 
 module.exports = retriveBooks;

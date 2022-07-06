@@ -16,11 +16,13 @@ describe("Test Books URLs", () => {
     const response = await request(app).post("/api/books").send(body);
 
     const response_body = JSON.parse(response["text"]);
+    const response_status = response["status"];
     const response_id = response_body["id"];
     const response_title = response_body["title"];
 
-    expect(response_title).toEqual(body["title"]);
+    expect(response_status).toEqual(201);
     expect(response_id).toEqual(1);
+    expect(response_title).toEqual(body["title"]);
   });
 
   it("Retrive books from a database with data", async () => {
@@ -33,7 +35,10 @@ describe("Test Books URLs", () => {
     await request(app).post("/api/books").send(body);
 
     const response = await request(app).get("/api/books");
+    const response_status = response["status"];
     const response_body = JSON.parse(response["text"]);
+
+    expect(response_status).toEqual(200);
 
     response_body.map((response_book) => {
       const expected_book = expected_body.find(
@@ -49,8 +54,10 @@ describe("Test Books URLs", () => {
     const response = await request(app).get(
       `/api/books/${expected_body["id"]}`
     );
+    const response_status = response["status"];
     const response_body = JSON.parse(response["text"]);
 
+    expect(response_status).toEqual(200);
     expect(response_body["id"]).toEqual(expected_body["id"]);
     expect(response_body["title"]).toEqual(expected_body["title"]);
   });
@@ -73,8 +80,10 @@ describe("Test Books URLs", () => {
     const response = await request(app)
       .put(`/api/books/${expected_body["id"]}`)
       .send(body);
+    const response_status = response["status"];
     const response_body = JSON.parse(response["text"]);
 
+    expect(response_status).toEqual(200);
     expect(response_body["id"]).toEqual(expected_body["id"]);
     expect(response_body["title"]).toEqual(expected_body["title"]);
   });

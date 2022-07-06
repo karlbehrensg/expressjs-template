@@ -23,7 +23,7 @@ const updateBook = async (req, res, next) => {
   });
   book.save();
 
-  res.send(book);
+  res.status(200).send(book);
 };
 
 module.exports = updateBook;
