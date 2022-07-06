@@ -88,6 +88,23 @@ describe("Test Books URLs", () => {
     expect(response_body["title"]).toEqual(expected_body["title"]);
   });
 
+  it("Try to update a workbook that does not exist", async () => {
+    const title = "new book updated";
+    const body = { title };
+    const expected_body = { id: 999, title };
+
+    const response = await request(app)
+      .put(`/api/books/${expected_body["id"]}`)
+      .send(body);
+    const response_status = response["status"];
+    const response_body = JSON.parse(response["text"]);
+
+    expect(response_status).toEqual(404);
+    expect(response_body).toEqual(
+      `No se encontro el libro con el id: ${expected_body["id"]}`
+    );
+  });
+
   it("Delete book", async () => {
     const id = 1;
     await request(app)
